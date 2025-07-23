@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Rachel 💖</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffe0ec, #fcd3e1);
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .typing {
+      display: inline-block;
+      border-right: 2px solid black;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(30, end), blink 0.8s infinite;
+      font-size: 24px;
+      margin-top: 100px;
+      color: #e91e63;
+      width: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 28ch }
+    }
+
+    @keyframes blink {
+      0% { border-color: transparent }
+      50% { border-color: black }
+      100% { border-color: transparent }
+    }
+
+    .photo-container img {
+      border-radius: 20px;
+      margin: 15px;
+      width: 200px;
+      height: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .dialog {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      font-size: 20px;
+      margin-top: 30px;
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #f50057;
+    }
+
+    .falling-heart, .falling-flower {
+      position: fixed;
+      top: -50px;
+      animation: fall 6s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="typing">Hai Rachel... Aku suka sama kamu 💌</div>
+
+<div class="photo-container">
+  <img src="https://imgur.com/uLInMUQ" alt="Rachel 1">
+  <img src="https://imgur.com/W3w7Tc5" alt="Rachel 2">
+</div>
+
+<div class="dialog" id="dialogBox">
+  Aku tahu ini tiba-tiba, tapi... maukah kamu jadi pacarku? 😳
+</div>
+
+<button class="button" onclick="nextStep()">💘 Jawab</button>
+
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  let step = 0;
+  const dialog = document.getElementById("dialogBox");
+  const button = document.querySelector(".button");
+
+  function nextStep() {
+    step++;
+    if (step === 1) {
+      dialog.innerText = "Hmm... aku nggak yakin. Takut kita nggak cocok 😢";
+      button.innerText = "😭 Tapi aku serius";
+    } else if (step === 2) {
+      dialog.innerText = "Yaudah deh... Tapi kamu harus janji jaga hati aku 💖";
+      button.innerText = "💍 JANJI!";
+    } else {
+      dialog.innerText = "Selamat! Rachel sekarang milikmu 😘💘";
+      button.style.display = "none";
+    }
+  }
+
+  // Hati & bunga jatuh
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.innerHTML = "💗";
+    heart.className = "falling-heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 30 + 20 + "px";
+    heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 300);
+
+  setInterval(() => {
+    const flower = document.createElement("div");
+    flower.innerHTML = "🌸";
+    flower.className = "falling-flower";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.fontSize = Math.random() * 20 + 15 + "px";
+    flower.style.animationDuration = Math.random() * 5 + 5 + "s";
+    document.body.appendChild(flower);
+
+    setTimeout(() => {
+      flower.remove();
+    }, 6000);
+  }, 800);
+</script>
+
+</body>
+</html>
